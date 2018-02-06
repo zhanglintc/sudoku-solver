@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+    <script src="http://code.jquery.com/jquery-1.4.1.min.js"></script>
+  </head>
+
+  <style type="text/css">
+    input {
+      width: 20px;
+    }
+  </style>
+
+  <body>
+    <title>Sudoku</title>
+
+    <h1 align="center">Sudoku Solver</h1>
+
+    <!-- div_row_1 -->
+    <div align="center" class="div_row_1">
+      <table border="0" style="display: inline-block;">
+        <tbody>
+          <tr>
+            <td><input type="text" class="block_1 line_1 row_1"></td>
+            <td><input type="text" class="block_1 line_1 row_2"></td>
+            <td><input type="text" class="block_1 line_1 row_3"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="block_1 line_2 row_1"></td>
+            <td><input type="text" class="block_1 line_2 row_2"></td>
+            <td><input type="text" class="block_1 line_2 row_3"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="block_1 line_3 row_1"></td>
+            <td><input type="text" class="block_1 line_3 row_2"></td>
+            <td><input type="text" class="block_1 line_3 row_3"></td>
+          </tr>
+        </tbody>
+      </table>
+      <table border="0" style="display: inline-block;">
+        <tbody>
+          <tr>
+            <td><input type="text" class="block_2 line_1 row_4"></td>
+            <td><input type="text" class="block_2 line_1 row_5"></td>
+            <td><input type="text" class="block_2 line_1 row_6"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="block_2 line_2 row_4"></td>
+            <td><input type="text" class="block_2 line_2 row_5"></td>
+            <td><input type="text" class="block_2 line_2 row_6"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="block_2 line_3 row_4"></td>
+            <td><input type="text" class="block_2 line_3 row_5"></td>
+            <td><input type="text" class="block_2 line_3 row_6"></td>
+          </tr>
+        </tbody>
+      </table>
+      <table border="0" style="display: inline-block;">
+        <tbody>
+          <tr>
+            <td><input type="text" class="block_3 line_1 row_7"></td>
+            <td><input type="text" class="block_3 line_1 row_8"></td>
+            <td><input type="text" class="block_3 line_1 row_9"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="block_3 line_2 row_7"></td>
+            <td><input type="text" class="block_3 line_2 row_8"></td>
+            <td><input type="text" class="block_3 line_2 row_9"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="block_3 line_3 row_7"></td>
+            <td><input type="text" class="block_3 line_3 row_8"></td>
+            <td><input type="text" class="block_3 line_3 row_9"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- div_row_2 -->
+    <div align="center" class="div_row_2">
+      <table border="0" style="display: inline-block;">
+        <tbody>
+          <tr>
+            <td><input type="text" class="block_4 line_4 row_1"></td>
+            <td><input type="text" class="block_4 line_4 row_2"></td>
+            <td><input type="text" class="block_4 line_4 row_3"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="block_4 line_5 row_1"></td>
+            <td><input type="text" class="block_4 line_5 row_2"></td>
+            <td><input type="text" class="block_4 line_5 row_3"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="block_4 line_6 row_1"></td>
+            <td><input type="text" class="block_4 line_6 row_2"></td>
+            <td><input type="text" class="block_4 line_6 row_3"></td>
+          </tr>
+        </tbody>
+      </table>
+      <table border="0" style="display: inline-block;">
+        <tbody>
+          <tr>
+            <td><input type="text" class="block_5 line_4 row_4"></td>
+            <td><input type="text" class="block_5 line_4 row_5"></td>
+            <td><input type="text" class="block_5 line_4 row_6"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="block_5 line_5 row_4"></td>
+            <td><input type="text" class="block_5 line_5 row_5"></td>
+            <td><input type="text" class="block_5 line_5 row_6"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="block_5 line_6 row_4"></td>
+            <td><input type="text" class="block_5 line_6 row_5"></td>
+            <td><input type="text" class="block_5 line_6 row_6"></td>
+          </tr>
+        </tbody>
+      </table>
+      <table border="0" style="display: inline-block;">
+        <tbody>
+          <tr>
+            <td><input type="text" class="block_6 line_4 row_7"></td>
+            <td><input type="text" class="block_6 line_4 row_8"></td>
+            <td><input type="text" class="block_6 line_4 row_9"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="block_6 line_5 row_7"></td>
+            <td><input type="text" class="block_6 line_5 row_8"></td>
+            <td><input type="text" class="block_6 line_5 row_9"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="block_6 line_6 row_7"></td>
+            <td><input type="text" class="block_6 line_6 row_8"></td>
+            <td><input type="text" class="block_6 line_6 row_9"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- div_row_3 -->
+    <div align="center" class="div_row_3">
+      <table border="0" style="display: inline-block;">
+        <tbody>
+          <tr>
+            <td><input type="text" class="block_7 line_7 row_1"></td>
+            <td><input type="text" class="block_7 line_7 row_2"></td>
+            <td><input type="text" class="block_7 line_7 row_3"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="block_7 line_8 row_1"></td>
+            <td><input type="text" class="block_7 line_8 row_2"></td>
+            <td><input type="text" class="block_7 line_8 row_3"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="block_7 line_9 row_1"></td>
+            <td><input type="text" class="block_7 line_9 row_2"></td>
+            <td><input type="text" class="block_7 line_9 row_3"></td>
+          </tr>
+        </tbody>
+      </table>
+      <table border="0" style="display: inline-block;">
+        <tbody>
+          <tr>
+            <td><input type="text" class="block_8 line_7 row_4"></td>
+            <td><input type="text" class="block_8 line_7 row_5"></td>
+            <td><input type="text" class="block_8 line_7 row_6"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="block_8 line_8 row_4"></td>
+            <td><input type="text" class="block_8 line_8 row_5"></td>
+            <td><input type="text" class="block_8 line_8 row_6"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="block_8 line_9 row_4"></td>
+            <td><input type="text" class="block_8 line_9 row_5"></td>
+            <td><input type="text" class="block_8 line_9 row_6"></td>
+          </tr>
+        </tbody>
+      </table>
+      <table border="0" style="display: inline-block;">
+        <tbody>
+          <tr>
+            <td><input type="text" class="block_9 line_7 row_7"></td>
+            <td><input type="text" class="block_9 line_7 row_8"></td>
+            <td><input type="text" class="block_9 line_7 row_9"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="block_9 line_8 row_7"></td>
+            <td><input type="text" class="block_9 line_8 row_8"></td>
+            <td><input type="text" class="block_9 line_8 row_9"></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="block_9 line_9 row_7"></td>
+            <td><input type="text" class="block_9 line_9 row_8"></td>
+            <td><input type="text" class="block_9 line_9 row_9"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- button -->
+    <div align="center" style="margin-top: 30px">
+      <button id="lock"  style="margin-right: 10px; width: 70px;" onclick="make_input_disabled_or_not()">Lock</button>
+      <button id="solve" style="margin-left:  10px; width: 70px;" onclick="solve_the_problem()">Solve</button>
+    </div>
+
+    <!-- footer -->
+    <div align="center" style="margin-top: 40px">© 2016-2018 by zhanglintc.co</div>
+
+    <script>
+      function make_input_disabled_or_not() {
+        var is_disabled = $("input").attr("disabled");
+        if (is_disabled) {
+          $("input").attr("disabled", "");
+          $("#lock").text("Lock");
+        }
+        else {
+          $("input").attr("disabled", "disabled");
+          $("#lock").text("Unlock");
+        }
+      }
+
+      // console.log();
+
+      function check_list_validation(list) {
+        var dict = new Array();
+        for (i = 0; i < list.length; i++) {
+          var value = list[i].value;
+          value = parseInt(value);
+          if (dict[value]) {
+            return false;
+          }
+          else {
+            dict[value] = 1;
+          }
+        }
+        return true;
+      }
+
+      function get_used_numbers(className) {
+        var zone = $("." + className);
+        var list = [];
+        for (i = 0; i < zone.length; i++) {
+          var value = zone[i].value;
+          value = parseInt(value);
+          if (value) {
+            list.push(value);
+          }
+        }
+        return list;
+      }
+
+      function get_available_numbers(className, available_numbers) {
+        var zone = $("." + className);
+        var list = [];
+        var used_numbers = get_used_numbers(className);
+        for (var i = 0; i < available_numbers.length; i++) {
+          if ($.inArray(available_numbers[i], used_numbers) == -1) {
+            list.push(available_numbers[i]);
+          }
+        }
+        return list;
+      }
+
+      function recursive_process(list, base_numbers) {
+        if (base_numbers.length == 0) {
+          return false;
+        }
+
+        // for all list
+        for (var i = 0; i < list.length; i++) {
+          var classNames = list[i].className.split(" ");
+
+          // for all classsNames
+          for (var j = 0; j < classNames.length; j++) {
+            var className = classNames[j];
+
+            var available_numbers = base_numbers;
+            available_numbers = get_available_numbers(className, available_numbers);
+            
+            // for all available_numbers
+            for (var k = 0; k < available_numbers.length; k++) {
+              list[i].value = k;
+              return recursive_process(list.slice(1), available_numbers);
+            }
+          }
+        }
+
+        return true;
+      }
+
+      function solve_the_problem() {
+        var input_list = $("input");
+        var base_numbers = [1, 2, 3 ,4, 5, 6, 7, 8, 9];
+        recursive_process(input_list, base_numbers);
+      }
+    </script>
+  </body>
+</html>
+
+
