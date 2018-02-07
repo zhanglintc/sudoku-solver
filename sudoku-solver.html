@@ -269,6 +269,16 @@
         return list;
       }
 
+      function get_available_numbers_by_node(node) {
+        var available_numbers = [1, 2, 3 ,4, 5, 6, 7, 8, 9];
+        var classNames = node.className.split(" ");
+        for (var j = 0; j < classNames.length; j++) {
+          var className = classNames[j];
+          available_numbers = get_available_numbers(className, available_numbers);
+        }
+        return available_numbers;
+      }
+
       function recursive_process(list, base_numbers) {
         if (base_numbers.length == 0) {
           if (list.length == 0)
@@ -282,31 +292,26 @@
 
         // for all list
         for (var i = 0; i < list.length; i++) {
-          if (list[i].value != "") {
+          var node = list[i];
+
+          if (node.value != "") {
             continue;
           }
-          var classNames = list[i].className.split(" ");
-
-          // for all classsNames
-          var available_numbers = base_numbers;
-          for (var j = 0; j < classNames.length; j++) {
-            var className = classNames[j];
-            available_numbers = get_available_numbers(className, available_numbers);
-          }
+          
+          var available_numbers = get_available_numbers_by_node(node);
 
           // for all available_numbers
           for (var k = 0; k < available_numbers.length; k++) {
-            list[i].value = available_numbers[k];
+            node.value = available_numbers[k];
             var answer = recursive_process(list.slice(1), available_numbers);
             if (answer) {
               return true;
-              break;
             }
             else {
-              list[i] = "";
-              continue;
+              node.value = "";
             }
           }
+          return false;
         }
 
         return true;
@@ -315,7 +320,13 @@
       function solve_the_problem() {
         var input_list = $("input");
         var base_numbers = [1, 2, 3 ,4, 5, 6, 7, 8, 9];
-        recursive_process(input_list, base_numbers);
+        var answer = recursive_process(input_list, base_numbers);
+        if (answer) {
+          alert("OK");
+        }
+        else {
+          alert("NG");
+        }
       }
     </script>
   </body>
