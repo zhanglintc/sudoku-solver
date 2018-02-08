@@ -392,7 +392,7 @@
         }
 
         if (!check_all_nodes()) {
-          alert("Conflict detected, please check your input.");
+          $("#info").text("Conflicted, double check?");
           return;
         }
 
