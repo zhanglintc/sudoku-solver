@@ -221,6 +221,16 @@
     <div align="center" style="margin-top: 40px">© 2016-2018 by zhanglintc.co</div>
 
     <script>
+      // restrict input maxlength as 1
+      $("input").attr("maxlength", "1");
+
+      // make input only accept numbers
+      $("input").keyup(function() {
+        if (new RegExp("[0-9]").test(event.target.value) == false) {
+          event.target.value = "";
+        }
+      });
+
       function make_input_disabled_or_not() {
         var is_disabled = $("input").attr("disabled");
 
@@ -250,8 +260,7 @@
         var is_disabled = $("input").attr("disabled");
 
         if (!is_disabled) {
-          if(!confirm("It's not locked, are you sure to clear?"))
-          {
+          if(!confirm("It's not locked, are you sure to clear?")) {
             return;
           }
         }
@@ -273,6 +282,9 @@
         var dict = new Array();
         for (i = 0; i < list.length; i++) {
           var value = list[i].value;
+          if (value == "") {
+            continue;
+          }
           value = parseInt(value);
           if (dict[value]) {
             return false;
@@ -321,8 +333,7 @@
 
       function recursive_process(list, base_numbers) {
         if (base_numbers.length == 0) {
-          if (list.length == 0)
-          {
+          if (list.length == 0) {
             return true;
           }
           else {
@@ -357,11 +368,31 @@
         return true;
       }
 
+      function check_all_nodes() {
+        var list = $("input");
+        for (var i = 0; i < list.length; i++) {
+          var node = list[i];
+          var classNames = node.className.split(" ");
+          for (var j = 0; j < classNames.length; j++) {
+            var className = classNames[j];
+            if (!check_list_validation($("." + className))) {
+              return false;
+            }
+          }
+        }
+        return true;
+      }
+
       function solve_the_problem() {
         var is_disabled = $("input").attr("disabled");
 
         if (!is_disabled) {
           alert("Please 'Lock' and then 'Solve'.");
+          return;
+        }
+
+        if (!check_all_nodes()) {
+          alert("Conflict detected, please check your input.");
           return;
         }
 
