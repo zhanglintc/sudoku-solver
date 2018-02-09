@@ -271,7 +271,7 @@
           if (node.getAttribute("locked") == "false") {
             node.value = "";
             node.style.backgroundColor = "";
-            $("#info").text("...");
+            $("#info").text("...").css("color", "black");
           }
         }
       }
@@ -387,16 +387,16 @@
         var is_disabled = $("input").attr("disabled");
 
         if (!is_disabled) {
-          alert("Please 'Lock' and then 'Solve'.");
+          $("#info").text("Please 'Lock' and then 'Solve'.").css("color", "red");;
           return;
         }
 
         if (!check_all_nodes()) {
-          $("#info").text("Conflicted, double check?");
+          $("#info").text("Conflicted, double check?").css("color", "red");;
           return;
         }
 
-        $("#info").text("We are working hard on it...");
+        $("#info").text("We are working hard on it...").css("color", "black");;
 
         var input_list = $("input");
         var base_numbers = [1, 2, 3 ,4, 5, 6, 7, 8, 9];
@@ -404,10 +404,10 @@
         setTimeout(function(){
           var answer = recursive_process(input_list, base_numbers);
           if (answer) {
-            $("#info").text("Great, we did it!");
+            $("#info").text("Great, we did it!").css("color", "black");;
           }
           else {
-            $("#info").text("Sorry, it cannot be solved!");
+            $("#info").text("Sorry, it cannot be solved!").css("color", "black");;
           }
         }, 0);
       }
