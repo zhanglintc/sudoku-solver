@@ -401,13 +401,15 @@
         var input_list = $("input");
         var base_numbers = [1, 2, 3 ,4, 5, 6, 7, 8, 9];
 
-        var answer = recursive_process(input_list, base_numbers);
-        if (answer) {
-          $("#info").text("Great, we did it!");
-        }
-        else {
-          $("#info").text("Sorry, it cannot be solved!");
-        }
+        setTimeout(function(){
+          var answer = recursive_process(input_list, base_numbers);
+          if (answer) {
+            $("#info").text("Great, we did it!");
+          }
+          else {
+            $("#info").text("Sorry, it cannot be solved!");
+          }
+        }, 0);
       }
     </script>
   </body>
